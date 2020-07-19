@@ -7,10 +7,9 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestionIndex
 let countRightAnswers = 0
 
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', ()=>{
-    currentQuestionIndex++
-    setNextQuestion()
+startButton.addEventListener('click', ()=>{
+  startGame()
+  countRightAnswers = 0
 })
 
 
@@ -21,7 +20,6 @@ function startGame(){
  currentQuestionIndex = 0
  questionContainerElement.classList.remove('hide')
  setNextQuestion()
- countRightAnswers = 0
 }
 
 function setNextQuestion(){
@@ -45,7 +43,6 @@ function showQuestion(question){
 
 function resetState() {
     clearStatusClass(document.body)
-    nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
       answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
@@ -58,21 +55,24 @@ function selectAnswer(e){
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide')
-  } else {
+
+  if (selectedButton.dataset = correct){
+    countRightAnswers++
+    currentQuestionIndex++
+    console.log("correct")
+    setNextQuestion()
+  }
+  else{
+    console.log("wrong")
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
-    countRightAnswers = 0;
-  }
-  if (selectedButton.dataset = correct) {
-    countRightAnswers++;
- // +1, change it if you need +10, +25 etc
- }
+    countRightAnswers=0;
+  } 
+  if (countRightAnswers > 3){
+    alert ("versusfnf.io/purchase?password=rookiesoty")
+}
+
  document.getElementById('right-answers').innerHTML = countRightAnswers + "/5 Questions Answered Correctly"; // span will show the score
- if (countRightAnswers > 4){
-     alert("link")
- }
 }
 
 function setStatusClass(element, correct) {
@@ -100,12 +100,12 @@ const questions = [
         ]
     },
     {
-        question: 'What bot is currentlly the "King of Yeezysupply" ?',
+        question: 'Which bot got over 26,000 checkouts on Yeezysupply during the Yeezy Zyon drop ?',
         answers: [
-            { text:'Splashforce ',correct: false},
-            { text:'Cyber ',correct: false},
-            { text:'Polaris ',correct: true},
-            { text:'Kodai',correct: false}
+            { text:'Polaris ',correct: false},
+            { text:'Phantom ',correct: false},
+            { text:'Splashforce ',correct: true},
+            { text:'Project Destroyer',correct: false}
         ]
     },
     {
@@ -127,12 +127,12 @@ const questions = [
         ]
     },
     {
-        question: 'Which of these bots is currently the most volatile on the market?',
+        question: 'Which of these bots recently switched to a $50/month renewal plan?',
         answers: [
             { text:'Cyber ',correct: false},
-            { text:'Eve ',correct: false},
-            { text:'Tohru ',correct: false},
-            { text:'Rush ',correct: true}
+            { text:'Kodai ',correct: false},
+            { text:'Rush ',correct: false},
+            { text:'Wrath ',correct: true}
         ]
     }
 ]
