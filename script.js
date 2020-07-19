@@ -3,6 +3,7 @@ const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
+const buttonDisabled = document.querySelector("button")
 
 let shuffledQuestions, currentQuestionIndex
 let countRightAnswers = 0
@@ -59,17 +60,21 @@ function selectAnswer(e){
   if (selectedButton.dataset = correct){
     countRightAnswers++
     currentQuestionIndex++
-    console.log("correct")
     setNextQuestion()
   }
   else{
-    console.log("wrong")
+    document.querySelectorAll('button.btn').forEach(elem => {
+      if (elem.id !== 'start-btn'){
+        elem.disabled = true
+        }
+  });
+     console.log('disabled')
     startButton.innerText = 'Restart'
     startButton.classList.remove('hide')
     countRightAnswers=0;
   } 
   if (countRightAnswers > 3){
-    alert ("versusfnf.io/purchase?password=rookiesoty")
+    alert ("versusfnf.io/purchase?password=psychosoty")
 }
 
  document.getElementById('right-answers').innerHTML = countRightAnswers + "/5 Questions Answered Correctly"; // span will show the score
